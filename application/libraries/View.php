@@ -110,5 +110,5 @@ class View
     {
         return "Test Func in template";
     }
-
+    
 }

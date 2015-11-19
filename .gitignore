@@ -18,10 +18,18 @@ $RECYCLE.BIN/
 
 #Other files should Not be On Project
 *.exe
+*.dll
+*.obj
 
 
 #CodeIgniter
 index.php
 system/*
-application/*
-!/application/libraries/
+/application/**/**
+!/application/**/
+
+
+
+!/application/views/themes/**/**
+!/application/config/style.php
+!/application/libraries/**
