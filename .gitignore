@@ -1,0 +1,29 @@
+#Windows Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+#OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.AppleDB
+.AppleDesktop
+.apdisk
+
+
+#Other files should Not be On Project
+*.exe
+
+
+
+
+#CodeIgniter
+index.php
+system/*
+application/*
+!application/libraries/View.php
