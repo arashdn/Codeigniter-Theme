@@ -1,3 +1,15 @@
+#CodeIgniter
+index.php
+system/*
+/application/**/**
+!/application/**/
+
+
+
+!/application/views/themes/**/**
+!/application/config/style.php
+!/application/libraries/**
+
 #Windows Files
 Thumbs.db
 ehthumbs.db
@@ -21,15 +33,3 @@ $RECYCLE.BIN/
 *.dll
 *.obj
 
-
-#CodeIgniter
-index.php
-system/*
-/application/**/**
-!/application/**/
-
-
-
-!/application/views/themes/**/**
-!/application/config/style.php
-!/application/libraries/**

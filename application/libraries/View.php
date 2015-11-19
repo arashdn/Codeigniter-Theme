@@ -5,69 +5,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Style
 {
 
-    private $name;
-    private $directory;
+    private $directory;//current theme directory
+    private $path;
     private $cssDirectory;
     private $jsDirectory;
     private $imgDirectory;
+    private $assetDirectory;
     private static $instance;
+    
+    private $CI = null;
 
-    function getName()
+    public function __get($property)
     {
-        return $this->name;
+        if (property_exists($this, $property))
+        {
+            return $this->$property;
+        }
     }
 
-    function getDirectory()
+    public function __set($property, $value)
     {
-        return $this->directory;
-    }
-
-    function getCssDirectory()
-    {
-        return $this->cssDirectory;
-    }
-
-    function getJsDirectory()
-    {
-        return $this->jsDirectory;
-    }
-
-    function getImgDirectory()
-    {
-        return $this->imgDirectory;
-    }
-
-    function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    function setDirectory($directory)
-    {
-        $this->directory = $directory;
-    }
-
-    function setCssDirectory($cssDirectory)
-    {
-        $this->cssDirectory = $cssDirectory;
-    }
-
-    function setJsDirectory($jsDirectory)
-    {
-        $this->jsDirectory = $jsDirectory;
-    }
-
-    function setImgDirectory($imgDirectory)
-    {
-        $this->imgDirectory = $imgDirectory;
+        if (property_exists($this, $property))
+        {
+            $this->$property = $value;
+        }
     }
 
     private function __construct()
     {
-        $this->setName("Test Style");
-        $this->setDirectory('test');
-        $this->setCssDirectory('css');
+        $this->CI =& get_instance();
+        $this->CI->config->load('style');
+        if($this->CI->config->item('theme_dir')==NULL || $this->CI->config->item('theme_dir')=="")
+        {
+            show_error("Theme Directory is not defined.");
+        }
+        else if(!is_dir(VIEWPATH.$this->CI->config->item('theme_dir')))
+        {
+            show_error("Theme directory not found");
+        }
+        //load from database
+        $this->directory = 'Style2';
+        $this->path=$this->CI->config->item('theme_dir').'/'.$this->directory;
+        $this->cssDirectory="css";
+        $this->jsDirectory="js";
+        $this->imgDirectory="img";
+        $this->assetDirectory="assets";
+        /////////////////////
+        if (!is_dir(VIEWPATH.$this->path))
+        {
+            show_error('Your style directory Not Found');
+        }
     }
+    
+    
+    
 
     static function getInstance()
     {
@@ -94,21 +85,35 @@ class View
 {
     private $CI = null;
     private $style;
+    private $defaultThemeDirectory;
             
     function __construct()
     {
         $this->CI =& get_instance();
         $this->style = Style::getInstance();
+        $this->CI->config->load('style');
+        
+        
+        if($this->CI->config->item('default_style')==NULL || $this->CI->config->item('default_style')=="")//Style support disabled
+        {
+            $this->style = NULL;
+        }
+        else if(!is_dir(VIEWPATH.$this->CI->config->item('theme_dir').'/'.$this->CI->config->item('default_style')))
+        {
+            show_error("Default Theme directory not found");
+        }
+        $this->defaultThemeDirectory=$this->CI->config->item('theme_dir').'/'.$this->CI->config->item('default_style');
     }
     
     function load($viewName , $data)
     {
+        if($this->style == NULL)
+        {
+            $this->CI->load->view($viewName,$data);
+            return;
+        }
         $data['template']=  $this;
-        $this->CI->load->view($viewName,$data);
+        $this->CI->load->view($this->style->path.'/'.$viewName,$data);
     }
-    function test()
-    {
-        return "Test Func in template";
-    }
-    
+        
 }

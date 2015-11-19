@@ -1,0 +1,6 @@
+<IfModule authz_core_module>
+    Require all allowed
+</IfModule>
+<IfModule !authz_core_module>
+    allow from all
+</IfModule>
