@@ -27,7 +27,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
 	</div>
-        
+<!--        <img src="<?php echo $template->img('a.png',true) ?>" width="100" height="50"/>-->
+        <?php echo VIEWPATH ?>
+        <?php echo $template->img('a.png',false,100,50); ?>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 

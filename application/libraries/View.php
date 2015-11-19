@@ -143,8 +143,30 @@ class View
         }
     }
     
-    function img($name,$fileOnly=false,$w,$h)
+    function img($name,$fileOnly=false,$w=null,$h=null)
     {
+        $this->CI->load->helper('url');
+        $path = base_url('application/views/'.$this->style->path.'/'.$this->style->imgDirectory.'/'.$name) ;
+        if($fileOnly)
+        {
+            return $path;
+        }
+        if($w == null || $h== null)
+        {
+            return "<img src=\"$path\"/>";
+        }
+        else
+        {
+            return "<img src=\"$path\" width=\"$w\" height=\"$h\" />";
+        }
+    }
+    
+    
+    function asset($name)
+    {
+        $this->CI->load->helper('url');
+        $path = base_url('application/views/'.$this->style->path.'/'.$this->style->assetDirectory.'/'.$name) ;
+        return $path;
         
     }
     
