@@ -142,5 +142,10 @@ class View
             return "<script src=\"$path\"></script>";
         }
     }
+    
+    function img($name,$fileOnly=false,$w,$h)
+    {
         
+    }
+    
 }
