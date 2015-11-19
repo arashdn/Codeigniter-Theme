@@ -113,7 +113,34 @@ class View
             return;
         }
         $data['template']=  $this;
-        $this->CI->load->view($this->style->path.'/'.$viewName,$data);
+        $page = $this->CI->load->view($this->style->path.'/'.$viewName,$data,TRUE);
+        echo $page;
+    }
+    function css($name='style.css',$fileOnly=false)
+    {
+        $this->CI->load->helper('url');
+        $path = base_url('application/views/'.$this->style->path.'/'.$this->style->cssDirectory.'/'.$name) ;
+        if ($fileOnly)
+        {
+            return $path;
+        }
+        else
+        {
+            return "<link rel=\"stylesheet\" href=\"$path\"/>";
+        }
+    }
+    function js($name='script.js',$fileOnly=false)
+    {
+        $this->CI->load->helper('url');
+        $path = base_url('application/views/'.$this->style->path.'/'.$this->style->jsDirectory.'/'.$name) ;
+        if ($fileOnly)
+        {
+            return $path;
+        }
+        else
+        {
+            return "<script src=\"$path\"></script>";
+        }
     }
         
 }
