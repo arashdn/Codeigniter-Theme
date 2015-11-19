@@ -100,5 +100,15 @@ class View
         $this->CI =& get_instance();
         $this->style = Style::getInstance();
     }
+    
+    function load($viewName , $data)
+    {
+        $data['template']=  $this;
+        $this->CI->load->view($viewName,$data);
+    }
+    function test()
+    {
+        return "Test Func in template";
+    }
 
 }
