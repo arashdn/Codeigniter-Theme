@@ -20,10 +20,8 @@ $RECYCLE.BIN/
 *.exe
 
 
-
-
 #CodeIgniter
 index.php
 system/*
 application/*
-!application/libraries/View.php
+!/application/libraries/
