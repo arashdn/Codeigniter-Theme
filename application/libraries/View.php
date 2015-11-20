@@ -94,6 +94,7 @@ class View
     private $style;
     private $defaultThemeDirectory;
     private $masterPage;
+    private $title = null;
             
     function __construct()
     {
@@ -113,15 +114,25 @@ class View
         $this->defaultThemeDirectory=$this->CI->config->item('theme_dir').'/'.$this->CI->config->item('default_style');
     }
     
-    function load($viewName , $data)
+    function load($viewName , $data = null , $_title=null)
     {
         if($this->style == NULL)
         {
             $this->CI->load->view($viewName,$data);
             return;
         }
+        if ($data == null)
+        {
+            $data = array();
+        }
+        
         $this->masterPage = null;
         $data['template']=  $this;
+        
+        if($_title != null)
+        {
+            $this->setTitle($_title);
+        }
         
         $page = $this->CI->load->view($this->style->path.'/'.$viewName,$data,TRUE);
         
@@ -137,6 +148,20 @@ class View
         
         
     }
+    
+    function setTitle($t)
+    {
+        $this->title = $this->CI->config->item('title_prefix').$t.$this->CI->config->item('title_suffix');
+    }
+    
+    function getTitle()
+    {
+        if($this->title == null)
+            return $this->CI->config->item('title_prefix').$this->CI->config->item('default_title').$this->CI->config->item('title_suffix');
+        else
+            return $this->title;
+    }
+    
     function css($name='style.css',$fileOnly=false)
     {
         $this->CI->load->helper('url');

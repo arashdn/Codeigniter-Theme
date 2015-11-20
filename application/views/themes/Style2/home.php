@@ -4,18 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <?php $template->setMasterPage('master.php') ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
 
-<!--        <link rel="stylesheet" href="<?php echo $template->css()?>"/>-->
-        <?php echo $template->css()?>
-<!--        <script src="<?php echo $template->js('test.js',true); ?>"></script>-->
-        <?php        echo $template->js('test.js'); ?>
-</head>
-<body>
 
 <div id="container">
 	<h1>This is Style2</h1>
@@ -36,6 +25,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php echo $template->img('a.png',false,100,50); ?>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
-
-</body>
-</html>
