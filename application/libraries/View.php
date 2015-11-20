@@ -43,13 +43,20 @@ class Style
         {
             show_error("Theme directory not found");
         }
-        //load from database
-        $this->directory = 'Style2';
-        $this->path=$this->CI->config->item('theme_dir').'/'.$this->directory;
-        $this->cssDirectory="css";
-        $this->jsDirectory="js";
-        $this->imgDirectory="img";
-        $this->assetDirectory="assets";
+        //load setting
+        if($this->CI->config->item('load_style_db') == FALSE)
+        {
+            $this->directory = $this->CI->config->item('style_dir');
+            $this->path=$this->CI->config->item('theme_dir').'/'.$this->directory;
+            $this->cssDirectory=$this->CI->config->item('style_css_dir');
+            $this->jsDirectory=$this->CI->config->item('style_js_dir');
+            $this->imgDirectory=$this->CI->config->item('style_img_dir');
+            $this->assetDirectory=$this->CI->config->item('style_asset_dir');
+        }
+        else
+        {
+            show_error('Loading Style from Database not implemented yet');
+        }
         /////////////////////
         if (!is_dir(VIEWPATH.$this->path))
         {
