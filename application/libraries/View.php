@@ -86,6 +86,7 @@ class View
     private $CI = null;
     private $style;
     private $defaultThemeDirectory;
+    private $masterPage;
             
     function __construct()
     {
@@ -112,9 +113,22 @@ class View
             $this->CI->load->view($viewName,$data);
             return;
         }
+        $this->masterPage = null;
         $data['template']=  $this;
+        
         $page = $this->CI->load->view($this->style->path.'/'.$viewName,$data,TRUE);
-        echo $page;
+        
+        if($this->masterPage != null && $this->masterPage != "")
+        {
+            $cont = array('content' => $page);
+            $this->CI->load->view($this->style->path.'/'.$this->masterPage,$cont);
+        }
+        else
+        {
+            echo $page;
+        }
+        
+        
     }
     function css($name='style.css',$fileOnly=false)
     {
@@ -160,8 +174,7 @@ class View
             return "<img src=\"$path\" width=\"$w\" height=\"$h\" />";
         }
     }
-    
-    
+      
     function asset($name)
     {
         $this->CI->load->helper('url');
@@ -170,4 +183,8 @@ class View
         
     }
     
+    function setMasterPage($name)
+    {
+        $this->masterPage = $name;
+    }
 }
