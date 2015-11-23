@@ -105,3 +105,31 @@ Or
 ```php
 <script src="<?php echo $template->js('myscript.js',true)?>"></script>
 ```
+
+**3. Image**  
+you can add images any where you need by calling img function.  
+This function has four argumnets:  
+First argument is file name (In your image folder).  
+Second argument is optional, It can be true or false and defualt value is false.  
+if you set this argument to true , it will return only image file address , for example:
+```
+http://localhost.com/application/views/mainstyle/img/a.png
+```
+and if you set it to false or don't set it up it will load address inside a script tag, for example:
+```
+<img src="http://localhost.com/application/views/mainstyle/img/a.png" />
+```
+Third and forth arguments are also optional, they are image width and height. If not set image original size will be loaded:
+
+call function like this: 
+```php
+<?php echo $template->img('a.png',false,100,50); ?>
+```
+Or
+```php
+<img src="<?php echo $template->img('a.png',true) ?>" width="100" height="50"/>
+```
+
+
+**4. Other assets**  
+you can add any other assets by calling asset function (it will only return asset path with out any tags)
