@@ -57,6 +57,13 @@ in master page you MUST add this line any where you like to display page content
 <?php echo $content; ?>
 ```
 
+####Sub Views
+For creating a sub view you can add the file in style folder(or any sub folder in it) then, any where you like to load sub view call it like this:
+```php
+<?php $template->subView('sub1') ?>
+```
+This code will load sub1.php in style directory
+
 ####Loading Assets
 You can load assets by calling their functions.  
 
