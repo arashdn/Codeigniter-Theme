@@ -7,6 +7,7 @@ A library to support multiple theme's in a codeigniter application.
 
 - Use multiple themes and change theme by setting a value in config file or ediiting database(Database support not implemented yet)
 - Master Page supoort.
+- Sub view support
 - Change Page title , anywhere by calling a function.
 - loading css , javascript and other assets by calling a simple function in style.
 
