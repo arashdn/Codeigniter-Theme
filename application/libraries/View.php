@@ -95,6 +95,7 @@ class View
     private $defaultThemeDirectory;
     private $masterPage;
     private $title = null;
+    private $mainData = array();
             
     function __construct()
     {
@@ -128,6 +129,7 @@ class View
         
         $this->masterPage = null;
         $data['template']=  $this;
+        $this->mainData = $data;
         
         if($_title != null)
         {
@@ -162,6 +164,11 @@ class View
             return $this->title;
     }
     
+    function subView($name)
+    {
+        $this->CI->load->view($this->style->path.'/'.$name,$this->mainData);
+    }
+            
     function css($name='style.css',$fileOnly=false)
     {
         $this->CI->load->helper('url');

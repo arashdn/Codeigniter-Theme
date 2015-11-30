@@ -16,7 +16,7 @@ $config['default_asset_dir'] = "assets"; // leave empty to use same folder as th
 
 $config['load_style_db'] = false;
 //Load Style setting in config file
-$config['style_dir'] = "Style2";// leave empty to disable style system
+$config['style_dir'] = "Default";// leave empty to disable style system
 $config['style_css_dir'] = "css"; // leave empty to use same folder as theme
 $config['style_js_dir'] = "js"; // leave empty to use same folder as theme
 $config['style_img_dir'] = "img"; // leave empty to use same folder as theme

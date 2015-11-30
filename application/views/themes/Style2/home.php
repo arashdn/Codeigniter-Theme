@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <?php $template->setMasterPage('master.php') ?>
-
+<?php $template->setTitle("title override"); ?>
 
 <div id="container">
 	<h1>This is Style2</h1>
